@@ -17,6 +17,7 @@ import IntroHeader from './components/IntroHeader';
 import Content from './sections/Content';
 
 import { CovidContext } from './Provider/CovidContext';
+import MapVaccination from './components/MapVaccination';
 
 const customTheme = extendTheme({
   styles: {
@@ -36,6 +37,7 @@ function App() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    document.title = 'U.S. COVID-19 vaccine tracker';
     setLoading(true);
     fetch(API)
       .then(res => {
