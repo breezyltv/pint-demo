@@ -1,11 +1,18 @@
 import { Box, Text } from '@chakra-ui/react';
 import React from 'react';
 import MapVaccination from '../components/MapVaccination';
+import TableVaccination from '../components/TableVaccination';
 import TitleText from '../components/TitleText';
 
 const Content = () => {
   return (
-    <Box>
+    <Box
+      sx={{
+        '& > div': {
+          marginBottom: '4rem',
+        },
+      }}
+    >
       <Box>
         <TitleText as="h4" size="md" title="COVID-19 vaccine rates by state" />
         <Text>
@@ -14,6 +21,19 @@ const Content = () => {
           at least one dose of the COVID-19 vaccine.
         </Text>
         <MapVaccination />
+        <TableVaccination />
+      </Box>
+      <Box>
+        <TitleText
+          as="h4"
+          size="md"
+          title="U.S. COVID-19 vaccine rates by age"
+        />
+        <Text>
+          This chart shows the percentage of the U.S. population that has
+          received a vaccination, broken down by age. Kids 5 and older can get
+          the vaccine in the U.S.
+        </Text>
       </Box>
     </Box>
   );

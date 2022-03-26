@@ -9,12 +9,12 @@ import { vaccineByPop } from '../libs/helpers';
 
 const MapVaccination = () => {
   const covidData = useContext(CovidContext);
-  const colorBgMode = useColorModeValue('#fff', '#19212D');
+  const colorBgMode = useColorModeValue('white', '#19212D');
   const colorTextMode = useColorModeValue('#19212D', 'white');
   //console.log(covidData);
 
   return (
-    <Box my="20px">
+    <Box my="30px">
       <ZingChart
         id="myChart"
         data={vaccineByPop(covidData, colorBgMode, colorTextMode)}

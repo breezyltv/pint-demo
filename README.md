@@ -1,11 +1,14 @@
 ### U.S. COVID-19 vaccine tracker 
 - A web app to see how many people are vaccinated and compare progress across states. It will get data from an API.
 
-### Tech stack
+### Tech stack & Features
 - Reactjs
 - Chakra UI framework
 - ZingChart
 - ZingGrid
+- Theme Mod:
+  - Dark mod
+  - Light Mod
 
 ### Resources and References
 - [Mayo Clinic](https://www.mayoclinic.org/coronavirus-covid-19/vaccine-tracker)

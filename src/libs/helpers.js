@@ -32,9 +32,9 @@ export const vaccineByPop = (covidData, colorBgMode, colorTextMode) => {
   if (!covidData) return null;
   const stateResults = {};
   const state_vac = covidData.state_vaccination;
-  Object.keys(state_vac).forEach(stateName => {
+  Object.keys(state_vac).forEach(stateKey => {
     const colorIdx = colorAndGroupId(
-      state_vac[stateName].percent_fully_vaccinated
+      state_vac[stateKey].percent_fully_vaccinated
     );
     const styleObjectState = {
       backgroundColor: colorGradient[colorIdx],
@@ -44,9 +44,12 @@ export const vaccineByPop = (covidData, colorBgMode, colorTextMode) => {
         fontFamily: 'inherit',
       },
       tooltip: {
-        text: `<b>${state_vac[stateName].stateName}</b>
-         Fully Vaccinated: ${state_vac[stateName].percent_fully_vaccinated}%
-         State Population: ${nf.format(state_vac[stateName].state_pop)}
+        text: `<b>${state_vac[stateKey].stateName}</b>
+         Fully Vaccinated: ${state_vac[stateKey].percent_fully_vaccinated}%
+         At Least One Dose: ${
+           state_vac[stateKey].percent_with_at_least_one_dose
+         }%
+         State Population: ${nf.format(state_vac[stateKey].state_pop)}
         `,
         fontSize: '14px',
         fontFamily: 'inherit',
@@ -55,7 +58,7 @@ export const vaccineByPop = (covidData, colorBgMode, colorTextMode) => {
         wrapText: true,
       },
     };
-    stateResults[stateName] = styleObjectState;
+    stateResults[stateKey] = styleObjectState;
   });
 
   return {
@@ -70,7 +73,15 @@ export const vaccineByPop = (covidData, colorBgMode, colorTextMode) => {
       shadow: false,
       color: colorTextMode,
     },
-
+    labels: [
+      {
+        text: 'Percentage of state population vaccinated',
+        fontSize: '14px',
+        paddingTop: '40px',
+        y: '420px',
+        x: '710px',
+      },
+    ],
     legend: {
       backgroundColor: 'none',
       borderWidth: 0,
@@ -152,4 +163,20 @@ export const vaccineByPop = (covidData, colorBgMode, colorTextMode) => {
       },
     ],
   };
+};
+
+export const vaccineByPopTable = covidData => {
+  if (!covidData) return null;
+  const stateResults = [];
+  const state_vac = covidData.state_vaccination;
+  Object.keys(state_vac).forEach(stateKey => {
+    stateResults.push({
+      location: state_vac[stateKey].stateName,
+      fully_vaccinated: state_vac[stateKey].percent_fully_vaccinated + '%',
+      at_least_one_dose:
+        state_vac[stateKey].percent_with_at_least_one_dose + '%',
+      population: state_vac[stateKey].state_pop,
+    });
+  });
+  return stateResults;
 };

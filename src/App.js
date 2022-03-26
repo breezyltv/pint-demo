@@ -1,10 +1,9 @@
-import React, { createContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   ChakraProvider,
   Box,
   Text,
   VStack,
-  Code,
   Grid,
   Container,
   Spinner,
@@ -17,13 +16,12 @@ import IntroHeader from './components/IntroHeader';
 import Content from './sections/Content';
 
 import { CovidContext } from './Provider/CovidContext';
-import MapVaccination from './components/MapVaccination';
 
 const customTheme = extendTheme({
   styles: {
     global: {
       '::selection': {
-        backgroundColor: '#5e60ce',
+        backgroundColor: '#f9c74f',
       },
     },
   },
@@ -66,7 +64,7 @@ function App() {
         color="blue.500"
         size="xl"
       />
-      <Text my="30px">getting data...</Text>
+      <Text my="30px">fetching data...</Text>
     </Box>
   );
 
@@ -77,10 +75,6 @@ function App() {
         <IntroHeader />
         <Content />
       </Container>
-
-      <Text>
-        Edit <Code fontSize="xl">src/App.js</Code> and save to reload.
-      </Text>
     </VStack>
   );
 
