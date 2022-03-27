@@ -1,4 +1,4 @@
-const nf = Intl.NumberFormat();
+export const nf = Intl.NumberFormat();
 
 export const colorGradient = [
   '#d8f3dc',

@@ -16,6 +16,7 @@ import IntroHeader from './components/IntroHeader';
 import Content from './sections/Content';
 import Footer from './sections/Footer';
 import { CovidContext } from './Provider/CovidContext';
+import CasesReport from './components/CasesReport';
 
 const customTheme = extendTheme({
   styles: {
@@ -32,9 +33,13 @@ const VAC_API =
 const CASES_API =
   'https://salty-island-46818.herokuapp.com/https://graphics.thomsonreuters.com/data/2020/coronavirus/global-tracker/statistics.json';
 
+const DOSES_API =
+  'https://salty-island-46818.herokuapp.com/https://graphics.thomsonreuters.com/data/2020/coronavirus/owid-covid-vaccinations/countries/united-states/data.json';
+
 function App() {
   const [covidVacData, setCovidVacData] = useState();
   const [covidCasesData, setCovidCasesData] = useState();
+  const [covidDosesData, setCovidDosesData] = useState();
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -74,7 +79,25 @@ function App() {
       .finally(() => setLoading(false));
   }, []);
 
-  console.log(covidCasesData);
+  useEffect(() => {
+    setLoading(true);
+    fetch(DOSES_API)
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        }
+        throw res;
+      })
+      .then(data => {
+        setCovidDosesData(data);
+      })
+      .catch(error => {
+        console.error('error fetching data', error);
+      })
+      .finally(() => setLoading(false));
+  }, []);
+
+  //console.log(covidCasesData);
 
   const loadingCPN = (
     <Box textAlign={'center'}>
@@ -93,6 +116,12 @@ function App() {
     <VStack>
       <Container maxW="container.lg" fontSize={'lg'}>
         <Header covid={covidVacData} />
+        {covidCasesData && covidDosesData && (
+          <CasesReport
+            casesCovid={covidCasesData}
+            dosesCovid={covidDosesData}
+          />
+        )}
         <IntroHeader />
         <Content />
         <Footer />

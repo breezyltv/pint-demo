@@ -1,4 +1,4 @@
-import { Box, Text, Code } from '@chakra-ui/react';
+import { Box, Text } from '@chakra-ui/react';
 import React, { useContext } from 'react';
 import AboutData from '../components/AboutData';
 import MapVaccination from '../components/MapVaccination';
