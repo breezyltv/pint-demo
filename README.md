@@ -1,12 +1,13 @@
 ### U.S. COVID-19 vaccine tracker 
-- A web app to see how many people are vaccinated and compare progress across states. It will get data from an API.
-
+- A web app to see how many people are vaccinated and compare progress across states. It will get data from APIs.
+### Demo
+[https://gentle-savannah-42173.herokuapp.com/](https://gentle-savannah-42173.herokuapp.com/)
 ### Tech stack & Features
 - Reactjs
 - Chakra UI framework
 - ZingChart
 - ZingGrid
-- Theme Mod:
+- Theme:
   - Dark mod
   - Light Mod
 
