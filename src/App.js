@@ -14,30 +14,33 @@ import { extendTheme } from '@chakra-ui/react';
 import Header from './sections/Header';
 import IntroHeader from './components/IntroHeader';
 import Content from './sections/Content';
-
+import Footer from './sections/Footer';
 import { CovidContext } from './Provider/CovidContext';
 
 const customTheme = extendTheme({
   styles: {
     global: {
       '::selection': {
-        backgroundColor: '#f9c74f',
+        backgroundColor: '#a3be8c',
       },
     },
   },
 });
 
-const API =
+const VAC_API =
   'https://salty-island-46818.herokuapp.com/https://kcmscovidtracker.blob.core.windows.net/json/state_v3/VACCINATION.json';
+const CASES_API =
+  'https://salty-island-46818.herokuapp.com/https://graphics.thomsonreuters.com/data/2020/coronavirus/global-tracker/statistics.json';
 
 function App() {
-  const [fetchCovidData, setFetchCovidData] = useState();
+  const [covidVacData, setCovidVacData] = useState();
+  const [covidCasesData, setCovidCasesData] = useState();
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    document.title = 'U.S. COVID-19 vaccine tracker';
+    document.title = 'U.S. COVID-19 tracker';
     setLoading(true);
-    fetch(API)
+    fetch(VAC_API)
       .then(res => {
         if (res.ok) {
           return res.json();
@@ -45,7 +48,7 @@ function App() {
         throw res;
       })
       .then(data => {
-        setFetchCovidData(data);
+        setCovidVacData(data);
       })
       .catch(error => {
         console.error('error fetching data', error);
@@ -53,7 +56,25 @@ function App() {
       .finally(() => setLoading(false));
   }, []);
 
-  //console.log(fetchCovidData);
+  useEffect(() => {
+    setLoading(true);
+    fetch(CASES_API)
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        }
+        throw res;
+      })
+      .then(data => {
+        setCovidCasesData(data);
+      })
+      .catch(error => {
+        console.error('error fetching data', error);
+      })
+      .finally(() => setLoading(false));
+  }, []);
+
+  console.log(covidCasesData);
 
   const loadingCPN = (
     <Box textAlign={'center'}>
@@ -71,15 +92,16 @@ function App() {
   const contentCPN = (
     <VStack>
       <Container maxW="container.lg" fontSize={'lg'}>
-        <Header covid={fetchCovidData} />
+        <Header covid={covidVacData} />
         <IntroHeader />
         <Content />
+        <Footer />
       </Container>
     </VStack>
   );
 
   return (
-    <CovidContext.Provider value={fetchCovidData}>
+    <CovidContext.Provider value={covidVacData}>
       <ChakraProvider theme={customTheme}>
         <Box>
           <Grid minH={loading ? '100vh' : 0} p={3}>

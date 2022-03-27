@@ -30,7 +30,7 @@ const TableVaccination = () => {
           background: colorHeadMode,
         },
 
-        'zg-body': {
+        'zg-body, zg-row': {
           background: colorBgMode,
         },
         'zg-cell': {

@@ -8,7 +8,7 @@ const Header = ({ covid }) => {
       <Logo h="10vmin" pointerEvents="none" />
       <VStack alignItems="flex-start">
         <Text fontSize="4xl" fontWeight={'500'}>
-          U.S. COVID-19 vaccine tracker
+          U.S. COVID-19 tracker
         </Text>
         <Text>
           <Code fontSize="xl">

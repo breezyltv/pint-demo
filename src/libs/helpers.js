@@ -180,3 +180,27 @@ export const vaccineByPopTable = covidData => {
   });
   return stateResults;
 };
+
+const vaccineByAge = [
+  'percent_fully_vaccinated_5_11',
+  'percent_fully_vaccinated_12_17',
+  'percent_fully_vaccinated_18_24',
+  'percent_fully_vaccinated_25_39',
+  'percent_fully_vaccinated_40_49',
+  'percent_fully_vaccinated_50_64',
+  'percent_fully_vaccinated_65_74',
+  'percent_fully_vaccinated_75plus',
+];
+
+export const vaccineRateByAge = covidData => {
+  if (!covidData) return null;
+  const vaccineByAgeResults = {
+    values: [],
+    totalValues: [],
+  };
+  vaccineByAge.forEach(age => {
+    vaccineByAgeResults.values.push(covidData.usa_vaccination[age]);
+    vaccineByAgeResults.totalValues.push(100);
+  });
+  return vaccineByAgeResults;
+};

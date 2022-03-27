@@ -1,10 +1,13 @@
-import { Box, Text } from '@chakra-ui/react';
-import React from 'react';
+import { Box, Text, Code } from '@chakra-ui/react';
+import React, { useContext } from 'react';
+import AboutData from '../components/AboutData';
 import MapVaccination from '../components/MapVaccination';
 import TableVaccination from '../components/TableVaccination';
 import TitleText from '../components/TitleText';
-
+import VaccineRateByAge from '../components/VaccineRateByAge';
+import { CovidContext } from '../Provider/CovidContext';
 const Content = () => {
+  const covidData = useContext(CovidContext);
   return (
     <Box
       sx={{
@@ -34,7 +37,9 @@ const Content = () => {
           received a vaccination, broken down by age. Kids 5 and older can get
           the vaccine in the U.S.
         </Text>
+        {covidData && <VaccineRateByAge />}
       </Box>
+      <AboutData />
     </Box>
   );
 };
