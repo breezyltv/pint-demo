@@ -26,10 +26,10 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ### Demos
 - Map chart:\
-![alt text](https://github.com/breezyltv/pint-demo/blob/main/demos/ss0.png?raw=true)
+![alt text](https://github.com/breezyltv/pint-demo/blob/master/demos/ss0.png?raw=true)
 - Table:\
-![alt text](https://github.com/breezyltv/pint-demo/blob/main/demos/ss1.png?raw=true)
+![alt text](https://github.com/breezyltv/pint-demo/blob/master/demos/ss1.png?raw=true)
 - HBar chart:\
-![alt text](https://github.com/breezyltv/pint-demo/blob/main/demos/ss2.png?raw=true)
+![alt text](https://github.com/breezyltv/pint-demo/blob/master/demos/ss2.png?raw=true)
 - Light Mod:\
-![alt text](https://github.com/breezyltv/pint-demo/blob/main/demos/ss3.png?raw=true)
+![alt text](https://github.com/breezyltv/pint-demo/blob/master/demos/ss3.png?raw=true)
