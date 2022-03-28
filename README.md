@@ -1,7 +1,7 @@
 ### U.S. COVID-19 vaccine tracker 
 - A web app to see how many people are vaccinated and compare progress across states. It will get data from APIs.
 ### Live Demo
-- Please try to refresh browser if app is crashed in the first time. If this is on the free tier then this is expected behavior, it's the price you pay for free. It should restart on the next web request to it \
+- Please try to refresh browser if app is crashed in the first time. Because this is on the free tier then this is expected behavior, it's the price you pay for free. It should restart on the next web request to it. [stackoverflow](https://stackoverflow.com/questions/38965035/heroku-node-app-exits-after-idling) \
 [https://gentle-savannah-42173.herokuapp.com/](https://gentle-savannah-42173.herokuapp.com/)
 ### Tech stack & Features
 - Reactjs
