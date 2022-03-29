@@ -234,6 +234,7 @@ const MovingAgvBar = () => {
       fontColor: '#818181',
       fontFamily: 'Roboto',
       fontSize: '9px',
+      y: '91%',
     },
   };
 
