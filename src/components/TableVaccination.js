@@ -4,7 +4,7 @@ import ZingGrid from 'zinggrid';
 import { vaccineByPopTable } from '../libs/helpers';
 import { CovidContext } from '../Provider/CovidContext';
 const TableVaccination = () => {
-  const covidData = useContext(CovidContext);
+  const { covidVacData } = useContext(CovidContext);
   const colorBgMode = useColorModeValue('white', '#19212D');
   const colorTextMode = useColorModeValue('#19212D', 'white');
   const colorHeadMode = useColorModeValue('#E3ECF6', '#364456');
@@ -57,7 +57,7 @@ const TableVaccination = () => {
         pager
         page-size="6"
         page-size-options="3,6,9"
-        data={JSON.stringify(vaccineByPopTable(covidData))}
+        data={JSON.stringify(vaccineByPopTable(covidVacData))}
         loading
       >
         <zg-caption id="table-cap">

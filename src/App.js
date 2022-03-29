@@ -12,7 +12,6 @@ import { ColorModeSwitcher } from './ColorModeSwitcher';
 
 import { extendTheme } from '@chakra-ui/react';
 import Header from './sections/Header';
-import IntroHeader from './components/IntroHeader';
 import Content from './sections/Content';
 import Footer from './sections/Footer';
 import { CovidContext } from './Provider/CovidContext';
@@ -36,10 +35,14 @@ const CASES_API =
 const DOSES_API =
   'https://salty-island-46818.herokuapp.com/https://graphics.thomsonreuters.com/data/2020/coronavirus/owid-covid-vaccinations/countries/united-states/data.json';
 
+const ALL_API =
+  'https://salty-island-46818.herokuapp.com/https://graphics.thomsonreuters.com/data/2020/coronavirus/global-tracker/countries/united-states/counts/all.json';
+
 function App() {
   const [covidVacData, setCovidVacData] = useState();
   const [covidCasesData, setCovidCasesData] = useState();
   const [covidDosesData, setCovidDosesData] = useState();
+  const [covidAllData, setCovidAllData] = useState();
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -97,7 +100,25 @@ function App() {
       .finally(() => setLoading(false));
   }, []);
 
-  //console.log(covidCasesData);
+  useEffect(() => {
+    setLoading(true);
+    fetch(ALL_API)
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        }
+        throw res;
+      })
+      .then(data => {
+        setCovidAllData(data);
+      })
+      .catch(error => {
+        console.error('error fetching data', error);
+      })
+      .finally(() => setLoading(false));
+  }, []);
+
+  //console.log(covidAllData);
 
   const loadingCPN = (
     <Box textAlign={'center'}>
@@ -122,7 +143,6 @@ function App() {
             dosesCovid={covidDosesData}
           />
         )}
-        <IntroHeader />
         <Content />
         <Footer />
       </Container>
@@ -130,7 +150,7 @@ function App() {
   );
 
   return (
-    <CovidContext.Provider value={covidVacData}>
+    <CovidContext.Provider value={{ covidVacData, covidAllData }}>
       <ChakraProvider theme={customTheme}>
         <Box>
           <Grid minH={loading ? '100vh' : 0} p={3}>

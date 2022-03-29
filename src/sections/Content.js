@@ -2,12 +2,14 @@ import { Box, Text } from '@chakra-ui/react';
 import React, { useContext } from 'react';
 import AboutData from '../components/AboutData';
 import MapVaccination from '../components/MapVaccination';
+import MovingAgvBar from '../components/MovingAvgBar';
 import TableVaccination from '../components/TableVaccination';
 import TitleText from '../components/TitleText';
+import IntroHeader from '../components/IntroHeader';
 import VaccineRateByAge from '../components/VaccineRateByAge';
 import { CovidContext } from '../Provider/CovidContext';
 const Content = () => {
-  const covidData = useContext(CovidContext);
+  const { covidVacData, covidAllData } = useContext(CovidContext);
   return (
     <Box
       sx={{
@@ -16,6 +18,8 @@ const Content = () => {
         },
       }}
     >
+      {covidAllData && <MovingAgvBar />}
+      <IntroHeader />
       <Box>
         <TitleText as="h4" size="md" title="COVID-19 vaccine rates by state" />
         <Text>
@@ -37,7 +41,7 @@ const Content = () => {
           received a vaccination, broken down by age. Kids 5 and older can get
           the vaccine in the U.S.
         </Text>
-        {covidData && <VaccineRateByAge />}
+        {covidVacData && <VaccineRateByAge />}
       </Box>
       <AboutData />
     </Box>

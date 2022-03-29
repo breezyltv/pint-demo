@@ -6,7 +6,7 @@ import ZingChart from 'zingchart-react';
 import { vaccineRateByAge } from '../libs/helpers';
 
 function VaccineRateByAge() {
-  const covidData = useContext(CovidContext);
+  const { covidVacData } = useContext(CovidContext);
   const colorBgMode = useColorModeValue('white', '#19212D');
   const colorBgBarMode = useColorModeValue('#E3ECF6', '#364456');
   const colorTextMode = useColorModeValue('#19212D', 'hsla(0,0%,100%,.75)');
@@ -89,7 +89,7 @@ function VaccineRateByAge() {
 
     series: [
       {
-        values: vaccineRateByAge(covidData).totalValues,
+        values: vaccineRateByAge(covidVacData).totalValues,
         tooltip: {
           visible: false,
         },
@@ -100,7 +100,7 @@ function VaccineRateByAge() {
         fillAngle: 90,
       },
       {
-        values: vaccineRateByAge(covidData).values,
+        values: vaccineRateByAge(covidVacData).values,
         backgroundColor: '#a3be8c',
         valueBox: {
           text: '%v',

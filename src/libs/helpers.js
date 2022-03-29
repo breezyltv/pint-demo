@@ -1,3 +1,5 @@
+import Queue from './Queue';
+
 export const nf = Intl.NumberFormat();
 
 export const colorGradient = [
@@ -203,4 +205,32 @@ export const vaccineRateByAge = covidData => {
     vaccineByAgeResults.totalValues.push(100);
   });
   return vaccineByAgeResults;
+};
+
+//calculate 7 days moving average line for bar chart
+export const calculateMovingAvg = (data, size) => {
+  let sum = 0;
+  const result = {
+    time_labels: [],
+    moving_agv: [],
+    cases: [],
+  };
+  for (const k in data) {
+    result.time_labels.push(data[k].date);
+    result.cases.push(data[k].count);
+    result.moving_agv.push(addNumber(data[k].count, size, sum));
+  }
+  return result;
+};
+
+//adds numbers to queue
+export const addNumber = (num, size, sum) => {
+  const q = new Queue();
+
+  if (q.size() >= size) {
+    sum -= q.dequeue();
+  }
+  q.enqueue(num);
+  sum += num;
+  return sum / size;
 };
