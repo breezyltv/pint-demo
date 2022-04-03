@@ -1,6 +1,9 @@
 ### U.S. COVID-19 vaccine tracker 
 - A web app to track covid cases and see how many people are vaccinated and compare progress across states. It will get data from APIs.
 ### Live Demo
+- Updated new deployment on Vercel:
+- [https://pint-demo-breezyltv.vercel.app/](https://pint-demo-breezyltv.vercel.app/)
+
 - Please try to refresh browser if app is crashed in the first time. Because this is on the free tier then this is expected behavior. It should restart on the next web request to it. [stackoverflow](https://stackoverflow.com/questions/38965035/heroku-node-app-exits-after-idling) \
   
 - [https://gentle-savannah-42173.herokuapp.com/](https://gentle-savannah-42173.herokuapp.com/)
